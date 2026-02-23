@@ -1,26 +1,26 @@
-/*
-Use Case 1: Welcome message
-
-description:
-    this class represent the entry of the palindrome checker application
-
-things that happen in this class:
-    -execute the welcome message
-   -shows the version of current java
-   -shows the message that the system is initialized successfully.
-
--no actual palindrome application is implemented yet
-
-the goal is the establish a clear startup flow before starting the application
-
-@author im-samzz
-@version 1.00
-
-*/
-
+import java.util.Scanner;
 public class PalindromeCheckerApp {
+    public static void check(String word){
+        boolean status = true;
+        for(int i=0; i<word.length(); i++){
+            if(word.charAt(i)!=word.charAt(word.length()-1-i)){
+                status = false;
+                break;
+            }
+        }
+
+
+            System.out.println("Is it a Palindrome?"+status);
+
+    }
+
     public static void main(String[] args) {
-//        String version = System.getProperty("java.version");
-        System.out.println("Welcome to Palindrome Checker Management System \n Version: 1.00 \nSystem initialized successfully.");
+
+        Scanner s1 = new Scanner(System.in);
+
+        System.out.print("Input text: ");
+        String name = s1.next();
+        check(name);
+
     }
 }
