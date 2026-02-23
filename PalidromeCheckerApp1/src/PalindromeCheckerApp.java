@@ -21,6 +21,6 @@ the goal is the establish a clear startup flow before starting the application
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
 //        String version = System.getProperty("java.version");
-        System.out.println("Welcome to Palindrome Checker Management System \nVersion: 1.00 \nSystem initialized successfully.");
+        System.out.println("Welcome to Palindrome Checker Management System \n Version: 1.00 \nSystem initialized successfully.");
     }
 }
