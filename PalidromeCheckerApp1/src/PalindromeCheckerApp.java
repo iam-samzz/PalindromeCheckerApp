@@ -1,16 +1,26 @@
 import java.util.Scanner;
 public class PalindromeCheckerApp {
-    public static void check(String word){
+    public static void reverse_and_check(String word){
         boolean status = true;
-        for(int i=0; i<word.length(); i++){
-            if(word.charAt(i)!=word.charAt(word.length()-1-i)){
-                status = false;
-                break;
-            }
+        String rev="";
+        //reverse
+        for(int i=word.length()-1; i>=0; i--)
+        {
+                rev = rev + word.charAt(i);
         }
 
 
-            System.out.println("Is it a Palindrome?"+status);
+            if(word.compareTo(rev) == 0)
+            {
+                System.out.println("Is it a Palindrome?"+status);
+            }
+
+            else
+            {
+                status = false;
+                System.out.println("Is it a Palindrome?"+status);
+
+            }
 
     }
 
@@ -20,7 +30,6 @@ public class PalindromeCheckerApp {
 
         System.out.print("Input text: ");
         String name = s1.next();
-        check(name);
-
+        reverse_and_check(name);
     }
 }
