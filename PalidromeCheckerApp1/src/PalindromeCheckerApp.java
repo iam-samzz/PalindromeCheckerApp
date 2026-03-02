@@ -2,26 +2,29 @@ import java.util.Scanner;
 public class PalindromeCheckerApp {
     public static void reverse_and_check(String word){
         boolean status = true;
-        String rev="";
+
+        char arr[] = word.toCharArray();
         //reverse
-        for(int i=word.length()-1; i>=0; i--)
+        int end_pointer = word.length()-1;
+        for(int i=0; i< word.length()-1; i++)
         {
-                rev = rev + word.charAt(i);
+                if(i>end_pointer)
+                    break;
+                else
+                {
+                    if(arr[i] == arr[end_pointer])
+                    {
+                        end_pointer--;
+                    }
+                    else
+                    {
+                        status = false;
+                    }
+                }
         }
 
 
-            if(word.compareTo(rev) == 0)
-            {
-                System.out.println("Is it a Palindrome?"+status);
-            }
-
-            else
-            {
-                status = false;
-                System.out.println("Is it a Palindrome?"+status);
-
-            }
-
+        System.out.println("Is it a Palindrome?"+status);
     }
 
     public static void main(String[] args) {
