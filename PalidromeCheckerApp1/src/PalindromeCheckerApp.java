@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class PalindromeCheckerApp {
     public static void reverse_and_check(String word){
@@ -9,35 +11,35 @@ public class PalindromeCheckerApp {
         //reverse
 
         Stack<Character> s = new Stack<Character>();
-
+        Queue<Character> q = new LinkedList<>();
         for(int i = 0;i<word.length();i++)
         {
             s.push(arr[i]);
+            q.offer(arr[i]);
+
         }
+        //stack  created...and queue also created
 
-        char rev[] = new char[word.length()];
-        for(int i = 0;i<word.length(); i++)
+
+        //lets check the dequeue and pop
+        int index =0;
+        while(index<word.length())
         {
-            rev[i] = s.pop();
-        }
-
-        //now 2 array is there, one is arr[] and another is rev[]
-
-        for(int i = 0; i<word.length();i++)
-        {
-            if(arr[i] == rev[i])
+            if(s.pop() == q.poll())
             {
-                status = true;
-
+                index++;
             }
-            else{
+            else
+            {
                 status = false;
                 break;
             }
-
         }
+
+        //printing the status
         System.out.println("Is it a Palindrome?"+status);
     }
+
 
     public static void main(String[] args) {
 
@@ -45,6 +47,8 @@ public class PalindromeCheckerApp {
 
         System.out.print("Input text: ");
         String name = s1.next();
+
+        //function call
         reverse_and_check(name);
     }
 }
