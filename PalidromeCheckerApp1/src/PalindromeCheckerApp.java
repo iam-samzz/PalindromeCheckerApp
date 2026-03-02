@@ -1,41 +1,29 @@
 import java.util.Scanner;
-import java.util.Stack;
-
 public class PalindromeCheckerApp {
     public static void reverse_and_check(String word){
         boolean status = true;
 
         char arr[] = word.toCharArray();
         //reverse
-
-        Stack<Character> s = new Stack<Character>();
-
-        for(int i = 0;i<word.length();i++)
+        int end_pointer = word.length()-1;
+        for(int i=0; i< word.length()-1; i++)
         {
-            s.push(arr[i]);
-        }
-
-        char rev[] = new char[word.length()];
-        for(int i = 0;i<word.length(); i++)
-        {
-            rev[i] = s.pop();
-        }
-
-        //now 2 array is there, one is arr[] and another is rev[]
-
-        for(int i = 0; i<word.length();i++)
-        {
-            if(arr[i] == rev[i])
-            {
-                status = true;
-
-            }
-            else{
-                status = false;
+            if(i>end_pointer)
                 break;
+            else
+            {
+                if(arr[i] == arr[end_pointer])
+                {
+                    end_pointer--;
+                }
+                else
+                {
+                    status = false;
+                }
             }
-
         }
+
+
         System.out.println("Is it a Palindrome?"+status);
     }
 
