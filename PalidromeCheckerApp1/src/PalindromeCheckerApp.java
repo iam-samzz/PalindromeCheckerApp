@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.LinkedList;
 
+//second time..
 public class PalindromeCheckerApp {
     public static void reverse_and_check(String word){
         boolean status = true;
