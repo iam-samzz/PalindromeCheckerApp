@@ -1,41 +1,56 @@
 import java.util.Scanner;
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Queue;
+import java.util.LinkedList;
 
 public class PalindromeCheckerApp {
     public static void reverse_and_check(String word){
         boolean status = true;
 
-        char arr[] = word.toCharArray();
-        //reverse
+        LinkedList<Character> list = new LinkedList<>();
 
-        Deque<Character> deque = new ArrayDeque<>();
-        for(int i = 0;i<word.length();i++)
+        int len = word.length();
+
+        for(int i=0; i<len ; i++)
         {
-            deque.offer(arr[i]);
-
+            list.add(word.charAt(i));
         }
-        //stack  created...and queue also created
+        //now word is added in the linked list
 
+        //now lets reverse the 2nd half
+        char temp;
 
-        //lets check the dequeue and pop
-        int index =0;
-        while(index<word.length()/2)
+        //hel(2.5)lo , len = 5, len/2 = 2.5,  moom, len/2 = 2, i>len, i>2,
         {
-            if(deque.pollFirst() == deque.pollLast())
+            int j = len / 2; //2
+            //System.out.println("J:"+j);
+            for (int i = len - 1; i > len / 2; i--)
             {
-                index++;
+                temp = list.get(i);
+                list.set(i, word.charAt(j));
+                list.set(j, temp);
+
+                j++ ;
+
+
+            }
+        }
+
+        //after reversing in the linked list , we are compating the values.
+        int j = len/2; //2
+        for(int i=0; i<len/2 ; i++)
+        {
+            if(list.get(i) == list.get(j))
+            {
+                j++;
             }
             else
             {
-                status =false;
+                status = false;
                 break;
             }
 
         }
-
         //printing the status
+        //System.out.println("List:"+list);
         System.out.println("Is it a Palindrome?"+status);
     }
 
