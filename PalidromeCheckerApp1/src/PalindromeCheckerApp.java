@@ -1,70 +1,35 @@
 import java.util.Scanner;
-import java.util.LinkedList;
 
-//second time..
 public class PalindromeCheckerApp {
-    public static void reverse_and_check(String word){
-        boolean status = true;
 
-        LinkedList<Character> list = new LinkedList<>();
+    // Recursive method to check palindrome
+    public static boolean isPalindrome(String str, int start, int end) {
 
-        int len = word.length();
-
-        for(int i=0; i<len ; i++)
-        {
-            list.add(word.charAt(i));
-        }
-        //now word is added in the linked list
-
-        //now lets reverse the 2nd half
-        char temp;
-
-        //hel(2.5)lo , len = 5, len/2 = 2.5,  moom, len/2 = 2, i>len, i>2,
-        {
-            int j = len / 2; //2
-            //System.out.println("J:"+j);
-            for (int i = len - 1; i > len / 2; i--)
-            {
-                temp = list.get(i);
-                list.set(i, word.charAt(j));
-                list.set(j, temp);
-
-                j++ ;
-
-
-            }
+        // Base condition: if pointers cross or are equal
+        if (start >= end) {
+            return true;
         }
 
-        //after reversing in the linked list , we are compating the values.
-        int j = len/2; //2
-        for(int i=0; i<len/2 ; i++)
-        {
-            if(list.get(i) == list.get(j))
-            {
-                j++;
-            }
-            else
-            {
-                status = false;
-                break;
-            }
-
+        // If characters at start and end are not same
+        if (str.charAt(start) != str.charAt(end)) {
+            return false;
         }
-        //printing the status
-        //System.out.println("List:"+list);
-        System.out.println("Is it a Palindrome?"+status);
+
+        // Recursive call
+        return isPalindrome(str, start + 1, end - 1);
     }
-
-
 
     public static void main(String[] args) {
 
-        Scanner s1 = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Input text: ");
-        String name = s1.next();
+        System.out.print("Input : ");
+        String input = scanner.nextLine();
 
-        //function call
-        reverse_and_check(name);
+        boolean result = isPalindrome(input, 0, input.length() - 1);
+
+        System.out.println("Is Palindrome? : " + result);
+
+        scanner.close();
     }
 }
