@@ -1,82 +1,58 @@
-import java.util.*;
+import java.util.Scanner;
 
-// Main Class
+/**
+ * MAIN CLASS - PalindromeCheckerApp
+ * Use Case 13: Performance Comparison
+ * * Description:
+ * This class measures and compares the execution performance
+ * of palindrome validation algorithms. [cite: 16]
+ */
 public class PalindromeCheckerApp {
 
-    // Strategy Interface
-    interface PalindromeStrategy {
-        boolean isPalindrome(String input);
-    }
-
-    // Stack आधारित Strategy
-    static class StackStrategy implements PalindromeStrategy {
-        public boolean isPalindrome(String input) {
-
-            String normalized = input.replaceAll("\\s+", "").toLowerCase();
-            Stack<Character> stack = new Stack<>();
-
-            // Push all characters
-            for (char c : normalized.toCharArray()) {
-                stack.push(c);
-            }
-
-            // Compare while popping
-            for (char c : normalized.toCharArray()) {
-                if (c != stack.pop()) {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-    }
-
-    // Deque आधारित Strategy
-    static class DequeStrategy implements PalindromeStrategy {
-        public boolean isPalindrome(String input) {
-
-            String normalized = input.replaceAll("\\s+", "").toLowerCase();
-            Deque<Character> deque = new ArrayDeque<>();
-
-            for (char c : normalized.toCharArray()) {
-                deque.add(c);
-            }
-
-            while (deque.size() > 1) {
-                if (deque.removeFirst() != deque.removeLast()) {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-    }
-
     public static void main(String[] args) {
-
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Input : ");
+        // Input gathering [cite: 31]
+        System.out.print("Input: ");
         String input = scanner.nextLine();
 
-        System.out.println("Choose Strategy:");
-        System.out.println("1. Stack");
-        System.out.println("2. Deque");
-        int choice = scanner.nextInt();
+        // 1. Capture execution start time [cite: 7, 19]
+        long startTime = System.nanoTime();
 
-        // Strategy selection (Polymorphism)
-        PalindromeStrategy strategy;
+        // 2. Run the algorithm logic [cite: 6]
+        boolean isPalindrome = checkPalindrome(input);
 
-        if (choice == 1) {
-            strategy = new StackStrategy();
-        } else {
-            strategy = new DequeStrategy();
-        }
+        // 3. Capture execution end time [cite: 19]
+        long endTime = System.nanoTime();
 
-        boolean result = strategy.isPalindrome(input);
+        // 4. Calculate total execution duration [cite: 20]
+        long duration = endTime - startTime;
 
-        System.out.println("Is Palindrome? : " + result);
+        // 5. Display benchmarking results [cite: 8, 21, 32, 33]
+        System.out.println("Is Palindrome? " + isPalindrome);
+        System.out.println("Execution Time: " + duration + " ns");
 
         scanner.close();
+    }
+
+    /**
+     * Core logic to validate if a string is a palindrome.
+     * Strengthening core programming fundamentals and data structures. [cite: 2]
+     */
+    private static boolean checkPalindrome(String str) {
+        if (str == null) return false;
+
+        String cleanStr = str.toLowerCase().replaceAll("[^a-zA-Z0-9]", "");
+        int left = 0;
+        int right = cleanStr.length() - 1;
+
+        while (left < right) {
+            if (cleanStr.charAt(left) != cleanStr.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
     }
 }
